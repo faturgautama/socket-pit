@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    printer-socket:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: his/printer-socket:${BUILD_DATE}.${BUILD_VERSION}
+        container_name: printer-socket
+        environment:
+            - TZ=Asia/Bangkok
+        ports:
+            - '4444:3000'
+        restart: unless-stopped
+        tty: true
+        networks:
+            - dbpis-network
+
+networks:
+    dbpis-network:
+        external: true
