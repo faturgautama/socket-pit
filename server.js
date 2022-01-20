@@ -76,4 +76,22 @@ io.on('connection', (socket) => {
             }
         }
     });
+
+    socket.on('pis:update-antrian', (data) => {
+        var objData = JSON.parse(data);
+
+        if (clients.length > 0) {
+            let result = clients.filter((obj) => {
+                return obj.customId === objData.toid;
+            });
+
+            if (result[0] !== undefined) {
+                console.log(result[0].clientId);
+                console.log(objData.msg);
+                socket.broadcast
+                    .to(result[0].clientId)
+                    .emit('pis:update-antrian', objData.msg);
+            }
+        }
+    });
 });
