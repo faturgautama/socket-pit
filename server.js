@@ -88,9 +88,7 @@ io.on('connection', (socket) => {
             if (result[0] !== undefined) {
                 console.log(result[0].clientId);
                 console.log(objData.msg);
-                socket.broadcast
-                    .to(result[0].clientId)
-                    .emit('pis:update-antrian', objData.msg);
+                socket.emit('pis:update-antrian', objData.msg);
             }
         }
     });
