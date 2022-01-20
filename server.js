@@ -79,6 +79,6 @@ io.on('connection', (socket) => {
 
     socket.on('pis:update-antrian', (data) => {
         console.log(data);
-        socket.emit('pis:update-antrian', data);
+        socket.broadcast.emit('pis:update-antrian', data);
     });
 });
