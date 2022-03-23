@@ -13,6 +13,10 @@ const io = new Server(server, {
 
 var clients = [];
 
+app.get('/health', (req, res) => {
+    res.send('Healthy');
+});
+
 server.listen(3000, () => {
     console.log('listening on *:3000');
 });
@@ -80,5 +84,10 @@ io.on('connection', (socket) => {
     socket.on('pis:update-antrian', (data) => {
         console.log(data);
         socket.broadcast.emit('pis:update-antrian', data);
+    });
+
+    socket.on('pis:update-bed-booking-terprogram', (data) => {
+        console.log(data);
+        socket.broadcast.emit('pis:update-bed-booking-terprogram', data);
     });
 });

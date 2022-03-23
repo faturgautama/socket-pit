@@ -12,6 +12,9 @@ RUN npm install
 # If you are building your code for production
 #RUN npm ci --only=production
 
+RUN apk add --update curl && \
+    rm -rf /var/cache/apk/*
+
 # Bundle app source
 COPY . .
 

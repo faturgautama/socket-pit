@@ -3,6 +3,8 @@ const io = require('socket.io-client');
 // Require Bearer Token
 const socket = io('http://localhost:3000');
 
+
+
 socket.on('connect', (data) => {
     socket.emit('storeClientInfo', JSON.stringify({ customId: '1234' }));
     console.log('connected');
