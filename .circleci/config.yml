@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Deploy app to server development
           command: |
-            ssh -o StrictHostKeyChecking=no root@174.138.22.139 "cd /home/circle-deployment/printer-socket/ && docker pull dockerhiscis/printer-socket:development-latest && docker-compose up -d"
+            ssh -o StrictHostKeyChecking=no root@174.138.22.139 "cd /home/circle-deployment/socket-printer/ && docker pull dockerhiscis/printer-socket:development-latest && docker-compose up -d"
 
   build-demo:
     machine:
