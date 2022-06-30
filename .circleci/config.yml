@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Deploy app to server demo
           command: |
-            ssh -o StrictHostKeyChecking=no his-admin@134.209.102.123 "cd /home/his-admin/printer-socket/ && ./deploy.sh"
+            ssh -o StrictHostKeyChecking=no his-admin@134.209.102.123 "cd /home/his-admin/socket-printer/ && ./deploy.sh"
 
 workflows:
   basic-workflow:
