@@ -90,4 +90,22 @@ io.on('connection', (socket) => {
         console.log(data);
         socket.broadcast.emit('pis:update-bed-booking-terprogram', data);
     });
+
+    socket.on('print:resep-irja', (data) => {
+        var objData = JSON.parse(data);
+
+        if (clients.length > 0) {
+            let result = clients.filter((obj) => {
+                return obj.customId === objData.toid;
+            });
+
+            if (result[0] !== undefined) {
+                console.log(result[0].clientId);
+                console.log(objData.msg);
+                socket.broadcast
+                    .to(result[0].clientId)
+                    .emit('print:resep-irja', objData.msg);
+            }
+        }
+    });
 });
