@@ -63,7 +63,7 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('print:ticket-admisi-irja', (data) => {
+    socket.on('print:pit', (data) => {
         var objData = JSON.parse(data);
 
         if (clients.length > 0) {
@@ -76,53 +76,7 @@ io.on('connection', (socket) => {
                 console.log(objData.msg);
                 socket.broadcast
                     .to(result[0].clientId)
-                    .emit('print:ticket-admisi-irja', objData.msg);
-            }
-        }
-    });
-
-    socket.on('pis:update-antrian', (data) => {
-        console.log(data);
-        socket.broadcast.emit('pis:update-antrian', data);
-    });
-
-    socket.on('pis:update-bed-booking-terprogram', (data) => {
-        console.log(data);
-        socket.broadcast.emit('pis:update-bed-booking-terprogram', data);
-    });
-
-    socket.on('print:resep-irja', (data) => {
-        var objData = JSON.parse(data);
-
-        if (clients.length > 0) {
-            let result = clients.filter((obj) => {
-                return obj.customId === objData.toid;
-            });
-
-            if (result[0] !== undefined) {
-                console.log(result[0].clientId);
-                console.log(objData.msg);
-                socket.broadcast
-                    .to(result[0].clientId)
-                    .emit('print:resep-irja', objData.msg);
-            }
-        }
-    });
-
-    socket.on('print:ticket-admisi-irna', (data) => {
-        var objData = JSON.parse(data);
-
-        if (clients.length > 0) {
-            let result = clients.filter((obj) => {
-                return obj.customId === objData.toid;
-            });
-
-            if (result[0] !== undefined) {
-                console.log(result[0].clientId);
-                console.log(objData.msg);
-                socket.broadcast
-                    .to(result[0].clientId)
-                    .emit('print:ticket-admisi-irna', objData.msg);
+                    .emit('print:pit', objData.msg);
             }
         }
     });
